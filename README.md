@@ -1,9 +1,9 @@
 # Jarkom-Modul-3-E08-2021
 
 Lapres Praktikum Jaringan Komputer Modul 3
--  (05111940000005)
+- Fais Rafii Akbar Hidiya (05111940000026)
 - Zahra Dyah Meilani (05111940000069)
--  (05111940000)
+- Aji Rindra Fakhrezi Putra Faisal (05111940000205)
 
 ## **Soal 1**
 
