@@ -125,9 +125,10 @@ Kemudian pada node lainnya:
 
 Pertama, install DHCP relay pada Foosha:
 
-`apt-get update`
-
-`apt-get install isc-dhcp-relay -y`
+```
+apt-get update
+apt-get install isc-dhcp-relay -y
+```
 
 Edit isi `/etc/default/isc-dhcp-relay` dengan menggunakan nano menjadi seperti berikut:
 
@@ -154,7 +155,7 @@ Edit isi `/etc/sysctl.conf` dengan menggunakan nano menjadi seperti berikut:
 
 ![2c](images/2c.png)
 
-uncomment `net.ipv4.ip_forward=1` supaya dapat 
+dan uncomment `net.ipv4.ip_forward=1`.
 
 Pada EniesLobby, install bind9: 
 
@@ -172,9 +173,10 @@ apt-get install apache2-utils -y
 ```
 Start DHCP server pada Jipangu dan DHCP relay pada Foosha:
 
-```service isc-dhcp-server restart```
-
-```service isc-dhcp-relay restart```
+```
+service isc-dhcp-server restart
+service isc-dhcp-relay restart
+```
 
 Untuk mengecek status:
 
@@ -226,11 +228,11 @@ Ada beberapa kriteria yang ingin dibuat oleh Luffy dan Zoro, yaitu:
 
     - Loguetown
 
-      ![3b](image/3b.png)
+      ![3b](images/3b.png)
 
     - Alabasta
 
-      ![3c](image/3c.png)
+      ![3c](images/3c.png)
 
     Dari hasil tersebut, nilai IP kedua node telah sesuai dengan range di soal.
 
@@ -260,11 +262,11 @@ Periksa pada client node switch 3 dengan `ip a`,
 
 - Skypie
 
-![4b](image/4b.png)
+![4b](images/4b.png)
 
 - Tottoland
 
-![4c](image/4c.png)
+![4c](images/4c.png)
 
 Dari hasil tersebut, nilai IP kedua node telah sesuai dengan range di soal.
 
@@ -292,7 +294,7 @@ Dan tambahkan:
 
 `allow-query{any;};`
 
-![5a](image/5a.png)
+![5a](images/5a.png)
 
 Lalu, restart bind9:
 
@@ -302,19 +304,19 @@ Tes koneksi internet di setiap node
 
 - Loguetown
 
-    ![5b](image/5b.png)
+    ![5b](images/5b.png)
 
 - Alabasta
 
-    ![5c](image/5c.png)
+    ![5c](images/5c.png)
 
 - Skypie
 
-    ![5d](image/5d.png)
+    ![5d](images/5d.png)
 
 - Tottoland
 
-    ![5e](image/5e.png)
+    ![5e](images/5e.png)
 
 
 ## **Soal 6**
@@ -346,7 +348,7 @@ Agar node Skypie memiliki alamat IP tetap, maka digunakan fixed address.
 
 Pertama, periksa ethernet pada Skypie dengan command `ip a`, ambil nilai link/ether:
 
-![7a](image/7a.png)
+![7a](images/7a.png)
 
 Pada node Jipangu buka file `/etc/dhcp/dhcpd.conf`, dan tambahkan:
 
@@ -357,7 +359,7 @@ host Skypie {
 }
 ```
 
-hardware ethernet merupakan nilai link/ether dari Skypie dan fixed-address merupakan IP yang diminta, yaitu 10.33.3.69.
+hardware ethernet merupakan nilai link/ether dari Skypie, yaitu da:92:b0:a5:84:6c dan fixed-address merupakan IP yang diminta, yaitu 10.33.3.69.
 
 Edit network configuration pada Skypie:
 
@@ -375,7 +377,9 @@ Restart DHCP server pada Jipangu:
 
 Hasil `ip a` di node Skypie:
 
-![7c](image/7c.png)
+![7c](images/7c.png)
+
+IP Skypie telah berubah menjadi 10.33.3.69.
 
 
 ## **Soal 8**
