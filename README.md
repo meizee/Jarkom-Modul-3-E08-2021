@@ -378,12 +378,16 @@ Hasil `ip a` di node Skypie:
 ![7c](image/7c.png)
 
 
+## **Soal 8**
+
+Loguetown digunakan sebagai client Proxy agar transaksi jual beli dapat terjamin keamanannya, juga untuk mencegah kebocoran data transaksi. Pada Loguetown, proxy harus bisa diakses dengan nama jualbelikapal.yyy.com dengan port yang digunakan adalah 5000.
 
 
+### **Pembahasan**
 
+Sebelum membuat proxy pada Water7, diharuskan membuat DNS server untuk jualbelikapal.yyy.com di EniesLobby. Membuat DNS server tersebut diawali dengan konfigurasi pada file `/etc/bind/named.conf.local` dan tambahkan isi file tersebut sebagai berikut :
 
-
-
+![8a](image/8a.JPG)
 
 
 
