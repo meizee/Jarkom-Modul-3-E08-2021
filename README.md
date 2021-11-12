@@ -432,7 +432,7 @@ Dan gunakan command `lynx its.ac.id` :
 
 ![8f](images/8f.JPG)
 
-## **Soal 8**
+## **Soal 9**
 
 Agar transaksi jual beli lebih aman dan pengguna website ada dua orang, proxy dipasang autentikasi user proxy dengan enkripsi MD5 dengan dua username, yaitu luffybelikapalyyy dengan password luffy_yyy dan zorobelikapalyyy dengan password zoro_yyy.
 
@@ -456,3 +456,87 @@ Set password untuk zorobelikapalE08 : `zoro_E08`
 Untuk checking apakah user tersebut telah dibuat bisa di buka file `passwd` yang ada di directory `/etc/squid` :
 
 ![9a](images/9a.JPG)
+
+Setelah itu edit pada file `squid.conf` di directory `/etc/squid` menjadi :
+
+```
+http_port 5000
+visible_hostname jualbelikapal.E08.com
+
+auth_param basic program /usr/lib/squid/basic_ncsa_auth /etc/squid/passwd
+auth_param basic children 5
+auth_param basic realm Proxy
+auth_param basic credentialsttl 2 hours
+auth_param basic casesensitive on
+acl USERS proxy_auth REQUIRED
+http_access allow USERS
+```
+
+Setelah itu gunakan command `service squid restart` untuk menggunakan konfigurasi squid yang baru. Pada Loguetown set proxy dengan menggunakan command : 
+
+`export http_proxy="http://jualbelikapal.E08.com:5000"`
+
+dan check apakah autentikasi bisa digunakan dengan command `lynx its.ac.id` :
+
+![9b](images/9b.JPG)
+
+## **Soal 10**
+
+Transaksi jual beli tidak dilakukan setiap hari, oleh karena itu akses internet dibatasi hanya dapat diakses setiap hari Senin-Kamis pukul 07.00-11.00 dan setiap hari Selasa-Jum’at pukul 17.00-03.00 keesokan harinya (sampai Sabtu pukul 03.00).
+
+### **Pembahasan**
+
+Untuk membuat pembatasan waktu akses transaksi jual beli, pada Water7 buat sebuah file `acl.conf` di directory `/etc/squid` dan isi dari file tersebut adalah :
+
+```
+acl Jam_Kerja1 time MTWH 07:00-11:00
+acl Jam_Kerja2 time TWHF 17:00-24:00
+acl Jam_Kerja3 time WHFA 00:00-03:00
+```
+
+Untuk setiap Jam_Kerja menunjukkan waktu akses proxy yang bisa digunakan pada saat itu, Jam_Kerja1 menunjukkan pada hari Senin - Kamis pukul 07.00 - 11.00. Jam_Kerja2 menunjukkan pada hari Selasa - Jumat pukul 17.00 - 24.00. Jam_Kerja3 menunjukkan hari Rabu - Sabtu pukul 24.00 - 03.00.
+
+Setelah itu edit pada file `squid.conf` di directory `/etc/squid` menjadi :
+
+```
+http_port 5000
+visible_hostname jualbelikapal.E08.com
+
+auth_param basic program /usr/lib/squid/basic_ncsa_auth /etc/squid/passwd
+auth_param basic children 5
+auth_param basic realm Proxy
+auth_param basic credentialsttl 2 hours
+auth_param basic casesensitive on
+acl USERS proxy_auth REQUIRED
+
+include /etc/squid/acl.conf
+http_access allow Jam_Kerja1 USERS
+http_access allow Jam_Kerja2 USERS
+http_access allow Jam_Kerja3 USERS
+http_access deny all
+```
+
+Setelah itu gunakan command `service squid restart` untuk menggunakan konfigurasi squid yang baru. Pada Loguetown set proxy dengan menggunakan command : 
+
+`export http_proxy="http://jualbelikapal.E08.com:5000"`
+
+dan check apakah proxy bisa dipakai pada saat jam yang telah ditentukan. 
+
+Misal set date di Loguetown `date -s "10 NOV 2021 10:00"`, kemudian gunakan command `lynx its.ac.id`
+
+![10a](images/10a.JPG)
+
+Hasil :
+
+![9b](images/9b.JPG)
+
+dan Misalkan set date di Loguetown `date -s "10 NOV 2021 12:00"`, kemudian gunakan command `lynx its.ac.id`
+
+![10b](images/10b.JPG)
+
+Hasil : 
+
+![10c](images/10c.JPG)
+
+
+
