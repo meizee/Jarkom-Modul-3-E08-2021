@@ -431,3 +431,28 @@ ping jualbelikapal.E08.com :
 Dan gunakan command `lynx its.ac.id` :
 
 ![8f](images/8f.JPG)
+
+## **Soal 8**
+
+Agar transaksi jual beli lebih aman dan pengguna website ada dua orang, proxy dipasang autentikasi user proxy dengan enkripsi MD5 dengan dua username, yaitu luffybelikapalyyy dengan password luffy_yyy dan zorobelikapalyyy dengan password zoro_yyy.
+
+### **Pembahasan**
+
+Untuk membuat user dan password untuk proxy pertama-tama install apache2-utils dengan menggunakan command :
+
+`sudo apt-get install apache2-utils -y`
+
+Setelah itu gunakan command `htpasswd -cm /etc/squid/passwd USERNAME` untuk create new file dengan enkripsi MD5 dan `htpasswd -m /etc/squid/passwd USERNAME` untuk membuat user baru di file tersebut. Command untuk kedua user baru tersebut adalah :
+
+```
+htpasswd -cm /etc/squid/passwd luffybelikapalE08
+htpasswd -m /etc/squid/passwd zorobelikapalE08
+```
+
+Set password untuk luffybelikapalE08 : `luffy_E08`
+
+Set password untuk zorobelikapalE08 : `zoro_E08`
+
+Untuk checking apakah user tersebut telah dibuat bisa di buka file `passwd` yang ada di directory `/etc/squid` :
+
+![9a](images/9a.JPG)
