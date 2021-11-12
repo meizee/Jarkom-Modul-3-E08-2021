@@ -385,10 +385,49 @@ Loguetown digunakan sebagai client Proxy agar transaksi jual beli dapat terjamin
 
 ### **Pembahasan**
 
-Sebelum membuat proxy pada Water7, diharuskan membuat DNS server untuk jualbelikapal.yyy.com di EniesLobby. Membuat DNS server tersebut diawali dengan konfigurasi pada file `/etc/bind/named.conf.local` dan tambahkan isi file tersebut sebagai berikut :
+Sebelum membuat proxy pada Water7, diharuskan membuat DNS untuk jualbelikapal.yyy.com di EniesLobby. Membuat DNS tersebut diawali dengan konfigurasi pada file `/etc/bind/named.conf.local` dan tambahkan isi file tersebut sebagai berikut :
 
-![8a](image/8a.JPG)
-
-
+![8a](images/8a.JPG)
 
 
+dan buat file konfigurasi dns server dengan nama `jualbelikapal.E08.com` di directory `/etc/bind` dan isi file sebagai berikut :
+
+![8b](images/8b.JPG)
+
+dan start DNS tersebut dengan `service bind9 restart`.
+
+Check pada client apakah dns tersebut bisa di ping : 
+
+![8c](images/8c.JPG)
+
+Setelah DNS sudah dibuat, membuat proxy server dengan squid pada Water7 yang diawali dengan beberapa command berikut :
+
+```
+apt-get update
+apt-get install squid -y
+```
+
+Setelah itu buat konfigurasi squid di directory `/etc/squid` dan buat file `squid.conf` dan isi file sebagai berikut :
+
+```
+http port 5000
+visible_hostname jualbelikapal.E08.com
+
+http_access allow all
+```
+
+Setelah itu untuk start proxy gunakan command `squid service restart`. Untuk check apakah proxy berhasil atau tidak, digunakan Loguetown untuk menggunakan proxy server yang telah dibuat dengan cara melakukan command :
+
+`export http_proxy="http://10.33.2.3:5000"` dan `export http_proxy="http://jualbelikapal.E08.com:5000"`.
+
+Check apakah sudah tersambung dengan proxy dengan menggunakan command `env | grep -i proxy` :
+
+![8e](images/8e.JPG)
+
+ping jualbelikapal.E08.com : 
+
+![8d](images/8d.JPG)
+
+Dan gunakan command `lynx its.ac.id` :
+
+![8f](images/8f.JPG)
