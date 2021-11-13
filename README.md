@@ -678,12 +678,14 @@ Jalankan command `nano /etc/squid/squid.conf`
 Kemudian tambahkan baris ini 
 
 ```bash
-    acl luffy url_regex -i \.png$
-    acl luffy url_regex -i \.jpg$
+acl USER1 proxy_auth luffybelikapalE08
+acl USER2 proxy_auth zorobelikapalE08
+acl BLACKLIST dstdomain .google.com
+acl ext_block url_regex "/etc/squid/ext_block.txt"
 
-    delay_pools 2
+  delay_pools 2
     delay_class 1 1
-    delay_parameters 1 10000/10000
+    delay_parameters 1 1250/1250
     delay_access 1 allow luffy
     delay_access 1 deny all
     delay_class 2 1
@@ -691,7 +693,7 @@ Kemudian tambahkan baris ini
     delay_access 2 allow !luffy
 ```
 
-![image](https://user-images.githubusercontent.com/81347366/141610143-c92eed14-c4e2-45bf-9bf1-8068f335e72e.png)
+![image](https://user-images.githubusercontent.com/81347366/141634009-156fd65e-d5e2-4a97-8077-c855f9fe8609.png)
 
 Setelah itu jalankan command `service squid restart`
 
