@@ -634,14 +634,21 @@ Jalankan command `nano /etc/squid/squid.conf`
 Kemudian tambahkan baris ini 
 
 ```bash
-    delay_pools 1
-    delay_class 1 1
-    delay_parameters 1 10000/10000
-    delay_access 1 allow luffy
-    delay_access 1 deny all
+acl USER1 proxy_auth luffybelikapalE08
+acl USER2 proxy_auth zorobelikapalE08
+acl BLACKLIST dstdomain .google.com
+acl ext_block url_regex "/etc/squid/ext_block.txt"
+
+delay_pools 2
+delay_class 1 1
+delay_access 1 allow USER2
+delay_parameters 1 -1/-1
+delay_class 2 1
+delay_access 2 allow ext_block
+delay_parameters 2 1250/1250
 ```
 
-![image](https://user-images.githubusercontent.com/81347366/141610128-d59d6a80-e208-4452-a4a0-12201f3ad5ca.png)
+![image](https://user-images.githubusercontent.com/81347366/141630138-f8679274-19cb-4a74-9d4e-c33940efd2d8.png)
 
 Setelah itu jalankan command `service squid restart`
 
