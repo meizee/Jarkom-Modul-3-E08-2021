@@ -685,6 +685,7 @@ Kemudian tambahkan baris ini
 ```
 
 ![image](https://user-images.githubusercontent.com/81347366/141610143-c92eed14-c4e2-45bf-9bf1-8068f335e72e.png)
+
 Setelah itu jalankan command `service squid restart`
 
 #### Loguetown
