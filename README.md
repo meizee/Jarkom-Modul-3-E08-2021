@@ -700,6 +700,20 @@ Kemudian Download salah satu file di directory public yang bukan jpg/png
 
 ![image](https://user-images.githubusercontent.com/81347366/141610148-214003f1-0d18-451d-9799-1b2f01a7a4ed.png)
 
+## Kendala
+
+
+Kendala yang dialami oleh kelompok kami pada saat mengerjakan praktikum adalah :
+
+
+1. Setiap anggota yang ada di kelompok kami mengerjakan nomor yang berbeda dan pengerjaan praktikum harus berurut dan setiap kali project di export dan di import, konfigurasi pengerjaan praktikum tidak tersimpan.
+ - Hal ini kami atasi dengan pembuatan bash script di setiap node nya agar pada saat import project tidak perlu lagi konfigurasi manual
+2. Script yang ada di setiap nodenya terkadang ada yang salah sehingga pada saat di import terkadang konfigurasi tidak berjalan
+ - Hal ini diatasi dengan pembuatan ulang script 
+3. Beberapa materi yang ada di modul tidak muncul di soal praktikum.
+ - Hal ini kami atasi dengan mencari method yang tidak ada di modul menggunakan google
+		
+
 
 
 
