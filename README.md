@@ -542,5 +542,168 @@ Hasil :
 
 ![10c](images/10c.JPG)
 
+## **Soal 11**
+
+Agar transaksi bisa lebih fokus berjalan, maka dilakukan redirect website agar mudah mengingat website transaksi jual beli kapal. Setiap **mengakses google.com, akan diredirect menuju super.franky.yyy.com** dengan website yang sama pada soal shift modul 2. Web server super.franky.yyy.com berada pada node **Skypie (11)**.
+
+### Jawab
+
+#### EniesLobby
+
+Edit file `nano /etc/bind/named.conf.local` dengan mengisi
+
+```bash
+    zone "super.franky.E08.com" {
+        type master;
+        file "/etc/bind/super.franky.e08.com";
+    };
+```
+
+![image-20211113140954723](C:\Users\FAIS\AppData\Roaming\Typora\typora-user-images\image-20211113140954723.png)
+
+Setelah itu edit file `nano /etc/bind/super.franky.E08.com` dengan mengisi
+
+```
+;
+; BIND data file for local loopback interface
+;
+$TTL    604800
+@       IN      SOA     super.franky.E08.com. root.super.franky.E08.com. (
+                         2021110801             ; Serial
+                         604800         ; Refresh
+                          86400         ; Retry
+                        2419200         ; Expire
+                         604800 )       ; Negative Cache TTL
+;
+@       IN      NS      super.franky.E08.com.
+@       IN      A       10.33.3.69 ; IP Skypie
+www     IN      CNAME   super.franky.E08.com.
+@       IN      AAAA    ::1
+
+```
+
+![image-20211113141346037](C:\Users\FAIS\AppData\Roaming\Typora\typora-user-images\image-20211113141346037.png)
+
+#### Skypie
+
+Pertama, install `apache2`, `php`, `libapache2-mod-php7.0`, `wget`, dan `unzip`.
+
+Kemudian jalankan command `wget https://raw.githubusercontent.com/FeinardSlim/Praktikum-Modul-2-Jarkom/main/super.franky.zip` kemudian `unzip super.franky.zip`
+
+Setelah itu, pindah ke directory `/etc/apache2/sites-available`.Kemudian copy file `000-default.conf` menjadi file `super.franky.E08.com.conf`
+
+![image-20211113141737874](C:\Users\FAIS\AppData\Roaming\Typora\typora-user-images\image-20211113141737874.png)
+
+
+
+Kemudian bikin directory baru dengan nama `super.franky.E08.com` pada `/var/www/` menggunakan command `mkdir /var/www/super.franky.E08.com`. lalu copy isi dari folder `super.franky` yang telah didownload ke `/var/www/super.franky.E08.com`.
+
+Setelah itu jalankan command `a2ensite super.franky.E08.com` dan `service apache2 restart`
+
+#### Water7
+
+Setelah itu edit file `/etc/squid/squid.conf` , tambahkan
+
+`acl BLACKLIST dstdomain .google.com `
+
+`deny_info http://super.franky.E08.com/ BLACKLIST`
+
+`http_access deny Jam_kerja1 BLACKLIST`
+
+kemudian jalankan command `service squid restart`
+
+#### Hasil : 
+
+![image-20211113142158625](C:\Users\FAIS\AppData\Roaming\Typora\typora-user-images\image-20211113142158625.png)
+
+
+
+![image-20211113142214458](C:\Users\FAIS\AppData\Roaming\Typora\typora-user-images\image-20211113142214458.png)
+
+
+
+## **Soal 12**
+
+Saatnya berlayar! Luffy dan Zoro akhirnya memutuskan untuk berlayar untuk mencari harta karun di super.franky.yyy.com. Tugas pencarian dibagi menjadi dua misi, Luffy bertugas untuk mendapatkan gambar (.png, .jpg), sedangkan Zoro mendapatkan sisanya. Karena Luffy orangnya sangat teliti untuk mencari harta karun, ketika ia berhasil mendapatkan gambar, ia mendapatkan gambar dan melihatnya dengan kecepatan 10 kbps
+
+### Jawab
+
+#### Water7
+
+Jalankan command `nano /etc/squid/squid.conf`
+
+Kemudian tambahkan baris ini 
+
+```bash
+    delay_pools 1
+    delay_class 1 1
+    delay_parameters 1 10000/10000
+    delay_access 1 allow luffy
+    delay_access 1 deny all
+```
+
+![image-20211113134107824](C:\Users\FAIS\AppData\Roaming\Typora\typora-user-images\image-20211113134107824.png)
+
+Setelah itu jalankan command `service squid restart`
+
+#### Loguetown
+
+jalankan command `export http_proxy="http://jualbelikapalE08.com:5000"`
+
+lalu jalankan `lynx super.franky.E08.com`
+
+Kemudian Download file jpg/png yang ada di directory public/images
+
+#### Hasil : 
+
+![img](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/e24444d6-72f7-4a90-96ed-a83775e92ef3/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20211113%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20211113T063628Z&X-Amz-Expires=86400&X-Amz-Signature=139a6a694c29782b0460fbe38e4ffffb9982d68430398e6530740c8726f7d8c7&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22)
+
+
+
+## **Soal 13**
+
+Sedangkan, Zoro yang sangat bersemangat untuk mencari harta karun, sehingga kecepatan kapal Zoro tidak dibatasi ketika sudah mendapatkan harta yang diinginkannya **(13)**.
+
+### Jawab
+
+#### Water7
+
+Jalankan command `nano /etc/squid/squid.conf`
+
+Kemudian tambahkan baris ini 
+
+```bash
+    acl luffy url_regex -i \.png$
+    acl luffy url_regex -i \.jpg$
+
+    delay_pools 2
+    delay_class 1 1
+    delay_parameters 1 10000/10000
+    delay_access 1 allow luffy
+    delay_access 1 deny all
+    delay_class 2 1
+    delay_parameters 2 none
+    delay_access 2 allow !luffy
+```
+
+![image-20211113140338936](C:\Users\FAIS\AppData\Roaming\Typora\typora-user-images\image-20211113140338936.png)
+
+Setelah itu jalankan command `service squid restart`
+
+#### Loguetown
+
+jalankan command `export http_proxy="http://jualbelikapalE08.com:5000"`
+
+lalu jalankan `lynx super.franky.E08.com`
+
+Kemudian Download salah satu file di directory public yang bukan jpg/png
+
+#### Hasil
+
+![image-20211113140453435](C:\Users\FAIS\AppData\Roaming\Typora\typora-user-images\image-20211113140453435.png)
+
+
+
+
 
 
