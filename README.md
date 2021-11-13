@@ -546,7 +546,7 @@ Hasil :
 
 Agar transaksi bisa lebih fokus berjalan, maka dilakukan redirect website agar mudah mengingat website transaksi jual beli kapal. Setiap **mengakses google.com, akan diredirect menuju super.franky.yyy.com** dengan website yang sama pada soal shift modul 2. Web server super.franky.yyy.com berada pada node **Skypie (11)**.
 
-### Jawab
+### Pembahasan
 
 #### EniesLobby
 
@@ -625,7 +625,7 @@ kemudian jalankan command `service squid restart`
 
 Saatnya berlayar! Luffy dan Zoro akhirnya memutuskan untuk berlayar untuk mencari harta karun di super.franky.yyy.com. Tugas pencarian dibagi menjadi dua misi, Luffy bertugas untuk mendapatkan gambar (.png, .jpg), sedangkan Zoro mendapatkan sisanya. Karena Luffy orangnya sangat teliti untuk mencari harta karun, ketika ia berhasil mendapatkan gambar, ia mendapatkan gambar dan melihatnya dengan kecepatan 10 kbps
 
-### Jawab
+### Pembahasan
 
 #### Water7
 
@@ -662,7 +662,7 @@ Kemudian Download file jpg/png yang ada di directory public/images
 
 Sedangkan, Zoro yang sangat bersemangat untuk mencari harta karun, sehingga kecepatan kapal Zoro tidak dibatasi ketika sudah mendapatkan harta yang diinginkannya **(13)**.
 
-### Jawab
+### Pembahasan
 
 #### Water7
 
