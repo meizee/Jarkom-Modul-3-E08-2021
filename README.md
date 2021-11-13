@@ -559,7 +559,7 @@ Edit file `nano /etc/bind/named.conf.local` dengan mengisi
     };
 ```
 
-![image-20211113140954723](C:\Users\FAIS\AppData\Roaming\Typora\typora-user-images\image-20211113140954723.png)
+![image](https://user-images.githubusercontent.com/81347366/141610076-a0554314-a56f-43da-a0df-57468cf38e97.png)
 
 Setelah itu edit file `nano /etc/bind/super.franky.E08.com` dengan mengisi
 
@@ -582,7 +582,7 @@ www     IN      CNAME   super.franky.E08.com.
 
 ```
 
-![image-20211113141346037](C:\Users\FAIS\AppData\Roaming\Typora\typora-user-images\image-20211113141346037.png)
+![image](https://user-images.githubusercontent.com/81347366/141610090-9aa53c1e-7c69-4ba9-a845-8bdd3a492ca3.png)
 
 #### Skypie
 
@@ -592,7 +592,7 @@ Kemudian jalankan command `wget https://raw.githubusercontent.com/FeinardSlim/Pr
 
 Setelah itu, pindah ke directory `/etc/apache2/sites-available`.Kemudian copy file `000-default.conf` menjadi file `super.franky.E08.com.conf`
 
-![image-20211113141737874](C:\Users\FAIS\AppData\Roaming\Typora\typora-user-images\image-20211113141737874.png)
+![image](https://user-images.githubusercontent.com/81347366/141610098-df795549-fef8-4d9d-8aae-6bd6d31b43e2.png)
 
 
 
@@ -614,12 +614,11 @@ kemudian jalankan command `service squid restart`
 
 #### Hasil : 
 
-![image-20211113142158625](C:\Users\FAIS\AppData\Roaming\Typora\typora-user-images\image-20211113142158625.png)
+![image](https://user-images.githubusercontent.com/81347366/141610105-7bf43e8d-5e1e-4526-88f2-e6e30dff29bc.png)
 
 
 
-![image-20211113142214458](C:\Users\FAIS\AppData\Roaming\Typora\typora-user-images\image-20211113142214458.png)
-
+![image](https://user-images.githubusercontent.com/81347366/141610108-a0c7c47d-57f7-4db2-a4cd-77e0a2a35934.png)
 
 
 ## **Soal 12**
