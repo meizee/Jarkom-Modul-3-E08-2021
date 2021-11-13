@@ -641,7 +641,7 @@ Kemudian tambahkan baris ini
     delay_access 1 deny all
 ```
 
-![image-20211113134107824](C:\Users\FAIS\AppData\Roaming\Typora\typora-user-images\image-20211113134107824.png)
+![image](https://user-images.githubusercontent.com/81347366/141610128-d59d6a80-e208-4452-a4a0-12201f3ad5ca.png)
 
 Setelah itu jalankan command `service squid restart`
 
@@ -655,8 +655,7 @@ Kemudian Download file jpg/png yang ada di directory public/images
 
 #### Hasil : 
 
-![img](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/e24444d6-72f7-4a90-96ed-a83775e92ef3/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20211113%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20211113T063628Z&X-Amz-Expires=86400&X-Amz-Signature=139a6a694c29782b0460fbe38e4ffffb9982d68430398e6530740c8726f7d8c7&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22)
-
+![image](https://user-images.githubusercontent.com/81347366/141610132-27ddcb40-0d3b-48d9-a36d-14204bbbdd89.png)
 
 
 ## **Soal 13**
@@ -685,8 +684,7 @@ Kemudian tambahkan baris ini
     delay_access 2 allow !luffy
 ```
 
-![image-20211113140338936](C:\Users\FAIS\AppData\Roaming\Typora\typora-user-images\image-20211113140338936.png)
-
+![image](https://user-images.githubusercontent.com/81347366/141610143-c92eed14-c4e2-45bf-9bf1-8068f335e72e.png)
 Setelah itu jalankan command `service squid restart`
 
 #### Loguetown
@@ -699,8 +697,7 @@ Kemudian Download salah satu file di directory public yang bukan jpg/png
 
 #### Hasil
 
-![image-20211113140453435](C:\Users\FAIS\AppData\Roaming\Typora\typora-user-images\image-20211113140453435.png)
-
+![image](https://user-images.githubusercontent.com/81347366/141610148-214003f1-0d18-451d-9799-1b2f01a7a4ed.png)
 
 
 
